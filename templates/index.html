@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Login</title>
+    <link rel="stylesheet" href="static/css/main.css">
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="logo">AMU</div>
+            <div class="back-link">Правила гри →</div>
+            <div class="image-container">
+                <img src="static/images/backgrounds/desert.png" alt="Desert landscape">
+            </div>
+            <div class="tagline">Приготуйся потрапити в світи на межі знищення, та спробуй вижити в них!</div>
+            <div class="dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot active"></span>
+            </div>
+        </div>
+        
+        <div class="right-panel">
+            <h1>Join Game</h1>
+            <p>Enter your details to start playing</p>
+            
+            <!-- Form now submits to server -->
+            <form id="login-form" method="POST" action="/room">
+                <div class="input-group">
+                    <input type="text" id="player-name" name="playerName" placeholder="Player Name" required>
+                    <input type="text" id="room-name" name="roomName" placeholder="Room Name" required>
+                </div>
+                
+                <button type="submit" class="login-button">Join Game</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Include the game.js script -->
+    <script src="static/js/main.js"></script>
+</body>
+</html>

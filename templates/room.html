@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Lobby</title>
+    <link rel="stylesheet" href="static/css/room.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Main content area -->
+        <div class="main-content">
+            <!-- Chat section -->
+            <div class="chat-section">
+                <div class="section-header">
+                    <h2>CHAT</h2>
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                    <!-- Chat messages will appear here -->
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="message-input" placeholder="Enter your message to chat">
+                    <button class="send-button" id="send-button">Send</button>
+                </div>
+            </div>
+
+            <!-- Players section -->
+            <div class="players-section">
+                <div class="section-header">
+                    <h2>PLAYERS</h2>
+                </div>
+                <div class="players-list" id="players-list">
+                    <!-- Players will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom controls -->
+        <div class="bottom-controls">
+            <div class="user-info">
+                <div class="user-icon"></div>
+                <span class="username" id="current-username">Player</span>
+            </div>
+            <div class="action-buttons">
+                <button class="btn-back" id="back-button">Back</button>
+                <button class="btn-ready" id="ready-button">Ready</button>
+                <button class="btn-start-match" id="start-button">Start Match</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JavaScript file -->
+    <script src="static/js/room.js"></script>
+</body>
+</html>

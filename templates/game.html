@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Бункер</title>
+  <link rel="stylesheet" href="static/css/game.css" />
+</head>
+<body>
+
+  <!-- Ліва навігація -->
+  <div class="sidebar">
+    <button class="nav-btn active" data-section="1">1</button>
+    <button class="nav-btn" data-section="2">2</button>
+    <button class="nav-btn" data-section="3">3</button>
+    <button class="nav-btn" data-section="4">4</button>
+  </div>
+
+  <!-- Основне вміст -->
+  <main class="content">
+    <!-- Секція 1: Історія Катаклізму -->
+    <section id="section-1" class="section active">
+      <div class="hero">
+        <h1>Катаклізм</h1>
+        <p>
+          Ніхто не очікував кінця, але однієї ночі небо покралося мерцаючими вогнями — наближаючись кораблями прибульців. Ці гігантські металеві моноліти зависли над містами, і світ змінився. Клімат збагнув: замерзали континенти, бушували урагани і землетруси. Повітря стало важким, спека і холод швидко змінювалися, техніка виходила з ладу. Ліси палали, океани випаровувалися, залишаючи пустельні рівнини. Прибульці керували погодою, порушуючи закони фізики. Люди в паніці намагалися втекти, але клімат більше не підкорявся їм.
+        </p>
+        <p>
+          Вчені дізналися, що прибульці керують кліматом через передавачі на своїх кораблях. Розробивши блокуючі пристрої, люди частково нейтралізували їх вплив, стабілізували клімат у локальних зонах — у містах-убіжищах з автономними екосистемами. Виживші повинні об'єднатися, щоб знайти і знищити головний джерело керування кліматом. Це єдиний шанс повернути Землю під свій контроль і запобігти загибелі планети.
+        </p>
+        <p class="stats">Залишок населення — 201 845 368 осіб</p>
+        <button class="btn-sound">Озвучити текст</button>
+      </div>
+    </section>
+
+    <!-- Секція 2: Бункер -->
+    <section id="section-2" class="section">
+      <div class="bunker-info">
+        <h2>Бункер</h2>
+        <div class="description">
+          <p>Був побудований 20 років тому. Має плесень і мох. Знаходиться в полі. Немає ліжок.</p>
+          <p><strong>У бункері є:</strong></p>
+          <ul>
+            <li>Протигаз (2 шт)</li>
+            <li>Сім'я зернових для посадки та обладнана теплиця</li>
+            <li>Пістолет (2 шт)</li>
+          </ul>
+          <p class="capacity"><strong>Кількість місць:</strong> <span class="highlight">3</span></p>
+        </div>
+        <div class="bunker-stats">
+          <div class="stat-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="4" stroke="#FFD700" strokeWidth="2"/>
+              <path d="M12 12L16 16" stroke="#FFD700" strokeWidth="2"/>
+              <path d="M12 12L8 8" stroke="#FFD700" strokeWidth="2"/>
+              <path d="M12 12L12 16" stroke="#FFD700" strokeWidth="2"/>
+              <path d="M12 12L12 8" stroke="#FFD700" strokeWidth="2"/>
+            </svg>
+            <div>
+              <p>Розмір бункера</p>
+              <p><strong>187 м²</strong></p>
+            </div>
+          </div>
+          <div class="stat-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="4" stroke="#FFD700" strokeWidth="2"/>
+              <path d="M12 8V12" stroke="#FFD700" strokeWidth="2"/>
+              <path d="M12 16H12.01" stroke="#FFD700" strokeWidth="2"/>
+              <path d="M9 16H9.01" stroke="#FFD700" strokeWidth="2"/>
+              <path d="M15 16H15.01" stroke="#FFD700" strokeWidth="2"/>
+            </svg>
+            <div>
+              <p>Час перебування</p>
+              <p><strong>1 рік</strong></p>
+            </div>
+          </div>
+          <div class="stat-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="4" stroke="#FFD700" strokeWidth="2"/>
+              <path d="M12 12L16 16" stroke="#FFD700" strokeWidth="2"/>
+              <path d="M12 12L8 8" stroke="#FFD700" strokeWidth="2"/>
+              <path d="M12 12L12 16" stroke="#FFD700" strokeWidth="2"/>
+              <path d="M12 12L12 8" stroke="#FFD700" strokeWidth="2"/>
+            </svg>
+            <div>
+              <p>Кількість їжі та води</p>
+              <p><strong>на 3 роки і 6 місяців</strong></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Секція 3: Персонажі -->
+    <section id="section-3" class="section">
+      <h2>Желающие попасть в бункер: <span class="highlight">6/6</span></h2>
+      <table class="character-table">
+        <thead>
+          <tr>
+            <th>№ Ім'я</th>
+            <th>Стать</th>
+            <th>Телосклад</th>
+            <th>Людська черта</th>
+            <th>Професія</th>
+            <th>Здоров’я</th>
+            <th>Хобі / Уподобання</th>
+            <th>Фобія / Страх</th>
+            <th>Крупний інвентар</th>
+            <th>Рюкзак</th>
+            <th>Додаткове</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="num">1</span> <span class="avatar">👤</span> Гость#1703797<br><small>Гость</small></td>
+            <td></td>
+            <td></td>
+            <td>Смышленый</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="num">2</span> <span class="avatar">👤</span> Гость#1703791<br><small>Гость</small></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="num">3</span> <span class="avatar">👤</span> Гость#1703771<br><small>Гость</small></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="num">4</span> <span class="avatar">👤</span> Гость#1703784<br><small>Гость</small></td>
+            <td></td>
+            <td>Атлетичное (Рост: 187 см.)</td>
+            <td>Амбициозный</td>
+            <td>Ландшафтный дизайнер (Стажер)</td>
+            <td></td>
+            <td>Пилатес (Продвинутый)</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="num">5</span> <span class="avatar">👤</span> Гость#1703788<br><small>Гость</small></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="num">6</span> <span class="avatar">👤</span> Гость#1703803<br><small>Гость</small></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Секція 4: Спеціальні здібності -->
+    <section id="section-4" class="section">
+      <h2>Таблиця спец. можливостей</h2>
+      <table class="skills-table">
+        <thead>
+          <tr>
+            <th>№ Ім'я</th>
+            <th>Спец. можливість 1</th>
+            <th>Спец. можливість 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="num">1</span> <span class="avatar">👤</span> Гость#1703797<br><small>Гость</small></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="num">2</span> <span class="avatar">👤</span> Гость#1703791<br><small>Гость</small></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="num">3</span> <span class="avatar">👤</span> Гость#1703771<br><small>Гость</small></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="num">4</span> <span class="avatar">👤</span> Гость#1703784<br><small>Гость</small></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="num">5</span> <span class="avatar">👤</span> Гость#1703788<br><small>Гость</small></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><span class="num">6</span> <span class="avatar">👤</span> Гость#1703803<br><small>Гость</small></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Нижні кнопки -->
+  <div class="bottom-controls">
+    <button class="timer-btn">0 СЕК.</button>
+    <button class="eye-btn">👁️</button>
+    <button class="scroll-btn up">↑</button>
+    <button class="scroll-btn down">↓</button>
+  </div>
+
+  <script>
+    // Навігація між секціями
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sectionId = btn.getAttribute('data-section');
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(`section-${sectionId}`).classList.add('active');
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // Кнопки верх/низ
+    document.querySelector('.scroll-btn.up').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    document.querySelector('.scroll-btn.down').addEventListener('click', () => {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    });
+  </script>
+
+</body>
+</html>

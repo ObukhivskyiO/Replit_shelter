@@ -1,0 +1,202 @@
+{
+  "projectName": "again_shelter_web",
+  "projectDescription": "A web-based multiplayer game with a lobby system. Players enter a name and room, join a lobby where they can chat and signal readiness, and then start a match. The game itself is a survival scenario in a post-apocalyptic bunker setting. The backend is built with Flask and Flask-SocketIO for real-time communication.",
+  "technologies": {
+    "backend": ["Python", "Flask", "Flask-SocketIO"],
+    "frontend": ["HTML", "CSS", "JavaScript"],
+    "dataFormats": ["JSON"]
+  },
+  "applicationFlow": {
+    "userJourney": [
+      "1. User opens the application at the root URL ('/') and sees the login page (`index.html`).",
+      "2. User enters a 'Player Name' and a 'Room Name' into the form.",
+      "3. Upon submission, the form data is sent via POST to the '/room' endpoint, and the user is redirected to the game lobby (`room.html`). The player and room names are also saved in the browser's localStorage via `main.js`.",
+      "4. On the lobby page, `room.js` reads the names from localStorage and emits a 'join_room' event to the server via Socket.IO.",
+      "5. The server adds the player to the specified room and broadcasts an updated player list to all clients in that room.",
+      "6. In the lobby, players can send messages through the chat and toggle their 'Ready' status. These actions trigger 'send_message' and 'toggle_ready' Socket.IO events.",
+      "7. When a player clicks 'Start Match', a 'start_match' event is sent. The server checks if enough players are ready and, if so, emits a 'match_started' event to all players in the room.",
+      "8. Upon receiving 'match_started', the clients are redirected to the '/game' URL, which displays the main game interface (`game.html`)."
+    ],
+    "dataFlow": {
+      "clientToServer": "User actions on the frontend (joining a room, sending a message, changing ready status) are sent to the Flask server as Socket.IO events. The initial room entry is a standard HTTP POST request.",
+      "serverToClient": "The server processes events and broadcasts updates back to the clients in a specific room. This includes new chat messages ('receive_message') and changes in the player list/status ('update_players').",
+      "serverState": "The server maintains an in-memory Python dictionary named 'rooms' which stores the state of all active game rooms, including the list of players (with their ready status) and chat history for each room."
+    }
+  },
+  "fileSystem": [
+    {
+      "path": "app.py",
+      "type": "file",
+      "language": "Python",
+      "purpose": "Main backend server file. It uses Flask to serve HTML pages and Flask-SocketIO to handle real-time communication for the game lobby.",
+      "keyComponents": [
+        {
+          "name": "app = Flask(__name__)",
+          "description": "Initializes the Flask application."
+        },
+        {
+          "name": "socketio = SocketIO(app)",
+          "description": "Integrates Socket.IO with the Flask app for real-time websocket communication."
+        },
+        {
+          "name": "rooms = {}",
+          "description": "A global dictionary that holds the state of all game rooms, including players and messages."
+        },
+        {
+          "name": "@app.route('/')",
+          "description": "Serves the main login page (`index.html`)."
+        },
+        {
+          "name": "@app.route('/room')",
+          "description": "Serves the game lobby page (`room.html`)."
+        },
+        {
+          "name": "@app.route('/game')",
+          "description": "Serves the main game page (`game.html`)."
+        },
+        {
+          "name": "@socketio.on('join_room')",
+          "description": "Event handler for when a player joins a room. Adds the player to the 'rooms' dictionary and broadcasts the updated player list."
+        },
+        {
+          "name": "@socketio.on('send_message')",
+          "description": "Event handler for chat messages. Broadcasts the received message to all players in the room."
+        },
+        {
+          "name": "@socketio.on('toggle_ready')",
+          "description": "Event handler for a player changing their ready status. Updates the player's state and broadcasts the new player list."
+        },
+        {
+          "name": "@socketio.on('start_match')",
+          "description": "Event handler to start the game. Checks if players are ready and emits a 'match_started' event to the room."
+        }
+      ]
+    },
+    {
+      "path": "templates/index.html",
+      "type": "file",
+      "language": "HTML",
+      "purpose": "The landing and login page. Contains a form for the user to enter their name and a room name.",
+      "dependencies": ["static/css/main.css", "static/js/main.js"],
+      "keyComponents": [
+        {
+          "name": "<form id='login-form'>",
+          "description": "The form that collects player and room names. It submits via POST to '/room'."
+        }
+      ]
+    },
+    {
+      "path": "templates/room.html",
+      "type": "file",
+      "language": "HTML",
+      "purpose": "The game lobby page. Displays the list of players, their ready status, and a chat interface.",
+      "dependencies": ["static/css/room.css", "static/js/room.js", "socket.io.js"],
+      "keyComponents": [
+        {
+          "name": "<div id='chat-messages'>",
+          "description": "Container where chat messages are dynamically inserted."
+        },
+        {
+          "name": "<div id='players-list'>",
+          "description": "Container where the list of players is dynamically inserted."
+        },
+        {
+          "name": "<button id='ready-button'>",
+          "description": "Button for the player to toggle their ready status."
+        },
+        {
+          "name": "<button id='start-button'>",
+          "description": "Button to initiate the match start."
+        }
+      ]
+    },
+    {
+      "path": "templates/game.html",
+      "type": "file",
+      "language": "HTML",
+      "purpose": "The main game screen. It presents information about the game world, bunker, and characters in a multi-section layout. Currently, it has static data.",
+      "dependencies": ["static/css/game.css", "static/js/game.js"],
+      "keyComponents": [
+        {
+          "name": "<div class='sidebar'>",
+          "description": "Side navigation to switch between different sections of game information."
+        },
+        {
+          "name": "<section id='section-1'>",
+          "description": "Displays the backstory of the cataclysm."
+        },
+        {
+          "name": "<section id='section-2'>",
+          "description": "Displays details about the bunker."
+        },
+        {
+          "name": "<section id='section-3'>",
+          "description": "Displays a table of characters who want to enter the bunker."
+        },
+        {
+          "name": "<section id='section-4'>",
+          "description": "Displays a table of character special abilities."
+        }
+      ]
+    },
+    {
+      "path": "static/js/main.js",
+      "type": "file",
+      "language": "JavaScript",
+      "purpose": "Script for `index.html`. It handles the login form submission, validates inputs, and saves player/room names to `localStorage` for use in other pages.",
+      "dependencies": ["templates/index.html"]
+    },
+    {
+      "path": "static/js/room.js",
+      "type": "file",
+      "language": "JavaScript",
+      "purpose": "Script for `room.html`. It manages all real-time lobby functionality by communicating with the server via Socket.IO.",
+      "dependencies": ["templates/room.html", "app.py"],
+      "keyComponents": [
+        {
+          "name": "const socket = io();",
+          "description": "Initializes the connection to the Socket.IO server."
+        },
+        {
+          "name": "socket.emit('join_room', ...)",
+          "description": "Sends an event to the server to join the specified room."
+        },
+        {
+          "name": "socket.on('update_players', ...)",
+          "description": "Listens for player list updates from the server and redraws the player list in the DOM."
+        },
+        {
+          "name": "socket.on('receive_message', ...)",
+          "description": "Listens for new chat messages and appends them to the chat window."
+        },
+        {
+          "name": "socket.on('match_started', ...)",
+          "description": "Listens for the match start signal and redirects the user to the '/game' page."
+        }
+      ]
+    },
+    {
+      "path": "static/js/game.js",
+      "type": "file",
+      "language": "JavaScript",
+      "purpose": "Script for `game.html`. Currently empty, but intended to handle game logic, character data population, and user interactions on the game screen.",
+      "dependencies": ["templates/game.html"]
+    },
+    {
+      "path": "static/json/pack/mediaevalism.json",
+      "type": "file",
+      "language": "JSON",
+      "purpose": "A data file containing detailed descriptions for a 'Medieval' themed game pack. It defines various character attributes like gender, profession, health, skills, and items. This data is likely intended to be used to dynamically generate characters in the game.",
+      "keyComponents": [
+        {
+          "name": "categories",
+          "description": "An array of objects, where each object represents a character attribute category (e.g., 'gender', 'profession', 'hobby')."
+        },
+        {
+          "name": "items",
+          "description": "Within each category, this array lists all possible values for that attribute, each with a 'value' and a 'description'."
+        }
+      ]
+    }
+  ]
+}
